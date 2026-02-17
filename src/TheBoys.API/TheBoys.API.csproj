@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TheBoys.Application\TheBoys.Application.csproj" />
+    <ProjectReference Include="..\TheBoys.Infrastructure\TheBoys.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Base\**\*.cs" />
+    <Compile Remove="Contracts\**\*.cs" />
+    <Compile Remove="DaoServices\**\*.cs" />
+    <Compile Remove="Data\**\*.cs" />
+    <Compile Remove="Dtos\**\*.cs" />
+    <Compile Remove="Entities\**\*.cs" />
+    <Compile Remove="Enums\**\*.cs" />
+    <Compile Remove="Extensions\**\*.cs" />
+    <Compile Remove="Migrations\**\*.cs" />
+    <Compile Remove="Middlewares\**\*.cs" />
+    <Compile Remove="Seeding\**\*.cs" />
+    <Compile Remove="Services\**\*.cs" />
+    <Compile Remove="Settings\**\*.cs" />
+    <Compile Remove="Controllers\Mails\Requests\**\*.cs" />
+    <Compile Remove="Controllers\News\Requests\**\*.cs" />
+    <Compile Remove="Misc\**\*.cs" />
+  </ItemGroup>
+
+</Project>

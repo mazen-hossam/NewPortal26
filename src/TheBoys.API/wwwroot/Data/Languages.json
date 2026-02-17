@@ -1,0 +1,922 @@
+[
+  {
+    "Code": "aa",
+    "Name": "Afar",
+    "Flag": "https://flagcdn.com/w80/dj.png"
+  },
+  {
+    "Code": "ab",
+    "Name": "Abkhazian",
+    "Flag": "https://flagcdn.com/w80/ge.png"
+  },
+  {
+    "Code": "ae",
+    "Name": "Avestan",
+    "Flag": ""
+  },
+  {
+    "Code": "af",
+    "Name": "Afrikaans",
+    "Flag": "https://flagcdn.com/w80/za.png"
+  },
+  {
+    "Code": "ak",
+    "Name": "Akan",
+    "Flag": "https://flagcdn.com/w80/gh.png"
+  },
+  {
+    "Code": "am",
+    "Name": "Amharic",
+    "Flag": "https://flagcdn.com/w80/et.png"
+  },
+  {
+    "Code": "an",
+    "Name": "Aragonese",
+    "Flag": "https://flagcdn.com/w80/es.png"
+  },
+  {
+    "Code": "ar",
+    "Name": "Arabic",
+    "Flag": "https://flagcdn.com/w80/eg.png"
+  },
+  {
+    "Code": "as",
+    "Name": "Assamese",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "av",
+    "Name": "Avaric",
+    "Flag": "https://flagcdn.com/w80/ru.png"
+  },
+  {
+    "Code": "ay",
+    "Name": "Aymara",
+    "Flag": "https://flagcdn.com/w80/bo.png"
+  },
+  {
+    "Code": "az",
+    "Name": "Azerbaijani",
+    "Flag": "https://flagcdn.com/w80/az.png"
+  },
+  {
+    "Code": "ba",
+    "Name": "Bashkir",
+    "Flag": "https://flagcdn.com/w80/ru.png"
+  },
+  {
+    "Code": "be",
+    "Name": "Belarusian",
+    "Flag": "https://flagcdn.com/w80/by.png"
+  },
+  {
+    "Code": "bg",
+    "Name": "Bulgarian",
+    "Flag": "https://flagcdn.com/w80/bg.png"
+  },
+  {
+    "Code": "bh",
+    "Name": "Bihari languages",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "bi",
+    "Name": "Bislama",
+    "Flag": "https://flagcdn.com/w80/vu.png"
+  },
+  {
+    "Code": "bm",
+    "Name": "Bambara",
+    "Flag": "https://flagcdn.com/w80/ml.png"
+  },
+  {
+    "Code": "bn",
+    "Name": "Bengali",
+    "Flag": "https://flagcdn.com/w80/bd.png"
+  },
+  {
+    "Code": "bo",
+    "Name": "Tibetan",
+    "Flag": "https://flagcdn.com/w80/cn.png"
+  },
+  {
+    "Code": "br",
+    "Name": "Breton",
+    "Flag": "https://flagcdn.com/w80/fr.png"
+  },
+  {
+    "Code": "bs",
+    "Name": "Bosnian",
+    "Flag": "https://flagcdn.com/w80/ba.png"
+  },
+  {
+    "Code": "ca",
+    "Name": "Catalan; Valencian",
+    "Flag": "https://flagcdn.com/w80/es.png"
+  },
+  {
+    "Code": "ce",
+    "Name": "Chechen",
+    "Flag": "https://flagcdn.com/w80/ru.png"
+  },
+  {
+    "Code": "ch",
+    "Name": "Chamorro",
+    "Flag": "https://flagcdn.com/w80/mp.png"
+  },
+  {
+    "Code": "co",
+    "Name": "Corsican",
+    "Flag": "https://flagcdn.com/w80/fr.png"
+  },
+  {
+    "Code": "cr",
+    "Name": "Cree",
+    "Flag": "https://flagcdn.com/w80/ca.png"
+  },
+  {
+    "Code": "cs",
+    "Name": "Czech",
+    "Flag": "https://flagcdn.com/w80/cz.png"
+  },
+  {
+    "Code": "cu",
+    "Name": "Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic",
+    "Flag": "https://flagcdn.com/w80/ru.png"
+  },
+  {
+    "Code": "cv",
+    "Name": "Chuvash",
+    "Flag": "https://flagcdn.com/w80/ru.png"
+  },
+  {
+    "Code": "cy",
+    "Name": "Welsh",
+    "Flag": "https://flagcdn.com/w80/gb.png"
+  },
+  {
+    "Code": "da",
+    "Name": "Danish",
+    "Flag": "https://flagcdn.com/w80/dk.png"
+  },
+  {
+    "Code": "de",
+    "Name": "German",
+    "Flag": "https://flagcdn.com/w80/de.png"
+  },
+  {
+    "Code": "dv",
+    "Name": "Divehi; Dhivehi; Maldivian",
+    "Flag": "https://flagcdn.com/w80/mv.png"
+  },
+  {
+    "Code": "dz",
+    "Name": "Dzongkha",
+    "Flag": "https://flagcdn.com/w80/bt.png"
+  },
+  {
+    "Code": "ee",
+    "Name": "Ewe",
+    "Flag": "https://flagcdn.com/w80/tg.png"
+  },
+  {
+    "Code": "el",
+    "Name": "Greek, Modern (1453-)",
+    "Flag": "https://flagcdn.com/w80/gr.png"
+  },
+  {
+    "Code": "en",
+    "Name": "English",
+    "Flag": "https://flagcdn.com/w80/gb.png"
+  },
+  {
+    "Code": "eo",
+    "Name": "Esperanto",
+    "Flag": ""
+  },
+  {
+    "Code": "es",
+    "Name": "Spanish; Castilian",
+    "Flag": "https://flagcdn.com/w80/es.png"
+  },
+  {
+    "Code": "et",
+    "Name": "Estonian",
+    "Flag": "https://flagcdn.com/w80/ee.png"
+  },
+  {
+    "Code": "eu",
+    "Name": "Basque",
+    "Flag": "https://flagcdn.com/w80/es.png"
+  },
+  {
+    "Code": "fa",
+    "Name": "Persian",
+    "Flag": "https://flagcdn.com/w80/ir.png"
+  },
+  {
+    "Code": "ff",
+    "Name": "Fulah",
+    "Flag": "https://flagcdn.com/w80/sn.png"
+  },
+  {
+    "Code": "fi",
+    "Name": "Finnish",
+    "Flag": "https://flagcdn.com/w80/fi.png"
+  },
+  {
+    "Code": "fj",
+    "Name": "Fijian",
+    "Flag": "https://flagcdn.com/w80/fj.png"
+  },
+  {
+    "Code": "fo",
+    "Name": "Faroese",
+    "Flag": "https://flagcdn.com/w80/fo.png"
+  },
+  {
+    "Code": "fr",
+    "Name": "French",
+    "Flag": "https://flagcdn.com/w80/fr.png"
+  },
+  {
+    "Code": "fy",
+    "Name": "Western Frisian",
+    "Flag": "https://flagcdn.com/w80/nl.png"
+  },
+  {
+    "Code": "ga",
+    "Name": "Irish",
+    "Flag": "https://flagcdn.com/w80/ie.png"
+  },
+  {
+    "Code": "gd",
+    "Name": "Gaelic; Scomttish Gaelic",
+    "Flag": "https://flagcdn.com/w80/gb.png"
+  },
+  {
+    "Code": "gl",
+    "Name": "Galician",
+    "Flag": "https://flagcdn.com/w80/es.png"
+  },
+  {
+    "Code": "gn",
+    "Name": "Guarani",
+    "Flag": "https://flagcdn.com/w80/py.png"
+  },
+  {
+    "Code": "gu",
+    "Name": "Gujarati",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "gv",
+    "Name": "Manx",
+    "Flag": "https://flagcdn.com/w80/im.png"
+  },
+  {
+    "Code": "ha",
+    "Name": "Hausa",
+    "Flag": "https://flagcdn.com/w80/ng.png"
+  },
+  {
+    "Code": "he",
+    "Name": "Hebrew",
+    "Flag": "https://flagcdn.com/w80/il.png"
+  },
+  {
+    "Code": "hi",
+    "Name": "Hindi",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "ho",
+    "Name": "Hiri Motu",
+    "Flag": "https://flagcdn.com/w80/pg.png"
+  },
+  {
+    "Code": "hr",
+    "Name": "Croatian",
+    "Flag": "https://flagcdn.com/w80/hr.png"
+  },
+  {
+    "Code": "ht",
+    "Name": "Haitian; Haitian Creole",
+    "Flag": "https://flagcdn.com/w80/ht.png"
+  },
+  {
+    "Code": "hu",
+    "Name": "Hungarian",
+    "Flag": "https://flagcdn.com/w80/hu.png"
+  },
+  {
+    "Code": "hy",
+    "Name": "Armenian",
+    "Flag": "https://flagcdn.com/w80/am.png"
+  },
+  {
+    "Code": "hz",
+    "Name": "Herero",
+    "Flag": "https://flagcdn.com/w80/na.png"
+  },
+  {
+    "Code": "ia",
+    "Name": "Interlingua (International Auxiliary Language Association)",
+    "Flag": ""
+  },
+  {
+    "Code": "id",
+    "Name": "Indonesian",
+    "Flag": "https://flagcdn.com/w80/id.png"
+  },
+  {
+    "Code": "ie",
+    "Name": "Interlingue; Occidental",
+    "Flag": ""
+  },
+  {
+    "Code": "ig",
+    "Name": "Igbo",
+    "Flag": "https://flagcdn.com/w80/ng.png"
+  },
+  {
+    "Code": "ii",
+    "Name": "Sichuan Yi; Nuosu",
+    "Flag": "https://flagcdn.com/w80/cn.png"
+  },
+  {
+    "Code": "ik",
+    "Name": "Inupiaq",
+    "Flag": "https://flagcdn.com/w80/us.png"
+  },
+  {
+    "Code": "io",
+    "Name": "Ido",
+    "Flag": ""
+  },
+  {
+    "Code": "is",
+    "Name": "Icelandic",
+    "Flag": "https://flagcdn.com/w80/is.png"
+  },
+  {
+    "Code": "it",
+    "Name": "Italian",
+    "Flag": "https://flagcdn.com/w80/it.png"
+  },
+  {
+    "Code": "iu",
+    "Name": "Inuktitut",
+    "Flag": "https://flagcdn.com/w80/ca.png"
+  },
+  {
+    "Code": "ja",
+    "Name": "Japanese",
+    "Flag": "https://flagcdn.com/w80/jp.png"
+  },
+  {
+    "Code": "jv",
+    "Name": "Javanese",
+    "Flag": "https://flagcdn.com/w80/id.png"
+  },
+  {
+    "Code": "ka",
+    "Name": "Georgian",
+    "Flag": "https://flagcdn.com/w80/ge.png"
+  },
+  {
+    "Code": "kg",
+    "Name": "Kongo",
+    "Flag": "https://flagcdn.com/w80/cg.png"
+  },
+  {
+    "Code": "ki",
+    "Name": "Kikuyu; Gikuyu",
+    "Flag": "https://flagcdn.com/w80/ke.png"
+  },
+  {
+    "Code": "kj",
+    "Name": "Kuanyama; Kwanyama",
+    "Flag": "https://flagcdn.com/w80/ao.png"
+  },
+  {
+    "Code": "kk",
+    "Name": "Kazakh",
+    "Flag": "https://flagcdn.com/w80/kz.png"
+  },
+  {
+    "Code": "kl",
+    "Name": "Kalaallisut; Greenlandic",
+    "Flag": "https://flagcdn.com/w80/gl.png"
+  },
+  {
+    "Code": "km",
+    "Name": "Central Khmer",
+    "Flag": "https://flagcdn.com/w80/kh.png"
+  },
+  {
+    "Code": "kn",
+    "Name": "Kannada",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "ko",
+    "Name": "Korean",
+    "Flag": "https://flagcdn.com/w80/kr.png"
+  },
+  {
+    "Code": "kr",
+    "Name": "Kanuri",
+    "Flag": "https://flagcdn.com/w80/ng.png"
+  },
+  {
+    "Code": "ks",
+    "Name": "Kashmiri",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "ku",
+    "Name": "Kurdish",
+    "Flag": "https://flagcdn.com/w80/iq.png"
+  },
+  {
+    "Code": "kv",
+    "Name": "Komi",
+    "Flag": "https://flagcdn.com/w80/ru.png"
+  },
+  {
+    "Code": "kw",
+    "Name": "Cornish",
+    "Flag": "https://flagcdn.com/w80/gb.png"
+  },
+  {
+    "Code": "ky",
+    "Name": "Kirghiz; Kyrgyz",
+    "Flag": "https://flagcdn.com/w80/kg.png"
+  },
+  {
+    "Code": "la",
+    "Name": "Latin",
+    "Flag": ""
+  },
+  {
+    "Code": "lb",
+    "Name": "Luxembourgish; Letzeburgesch",
+    "Flag": "https://flagcdn.com/w80/lu.png"
+  },
+  {
+    "Code": "lg",
+    "Name": "Ganda",
+    "Flag": "https://flagcdn.com/w80/ug.png"
+  },
+  {
+    "Code": "li",
+    "Name": "Limburgan; Limburger; Limburgish",
+    "Flag": "https://flagcdn.com/w80/nl.png"
+  },
+  {
+    "Code": "ln",
+    "Name": "Lingala",
+    "Flag": "https://flagcdn.com/w80/cd.png"
+  },
+  {
+    "Code": "lo",
+    "Name": "Lao",
+    "Flag": "https://flagcdn.com/w80/la.png"
+  },
+  {
+    "Code": "lt",
+    "Name": "Lithuanian",
+    "Flag": "https://flagcdn.com/w80/lt.png"
+  },
+  {
+    "Code": "lu",
+    "Name": "Luba-Katanga",
+    "Flag": "https://flagcdn.com/w80/cd.png"
+  },
+  {
+    "Code": "lv",
+    "Name": "Latvian",
+    "Flag": "https://flagcdn.com/w80/lv.png"
+  },
+  {
+    "Code": "mg",
+    "Name": "Malagasy",
+    "Flag": "https://flagcdn.com/w80/mg.png"
+  },
+  {
+    "Code": "mh",
+    "Name": "Marshallese",
+    "Flag": "https://flagcdn.com/w80/mh.png"
+  },
+  {
+    "Code": "mi",
+    "Name": "Maori",
+    "Flag": "https://flagcdn.com/w80/nz.png"
+  },
+  {
+    "Code": "mk",
+    "Name": "Macedonian",
+    "Flag": "https://flagcdn.com/w80/mk.png"
+  },
+  {
+    "Code": "ml",
+    "Name": "Malayalam",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "mn",
+    "Name": "Mongolian",
+    "Flag": "https://flagcdn.com/w80/mn.png"
+  },
+  {
+    "Code": "mr",
+    "Name": "Marathi",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "ms",
+    "Name": "Malay",
+    "Flag": "https://flagcdn.com/w80/my.png"
+  },
+  {
+    "Code": "mt",
+    "Name": "Maltese",
+    "Flag": "https://flagcdn.com/w80/mt.png"
+  },
+  {
+    "Code": "my",
+    "Name": "Burmese",
+    "Flag": "https://flagcdn.com/w80/mm.png"
+  },
+  {
+    "Code": "na",
+    "Name": "Nauru",
+    "Flag": "https://flagcdn.com/w80/nr.png"
+  },
+  {
+    "Code": "nb",
+    "Name": "Bokm�l, Norwegian; Norwegian Bokm�l",
+    "Flag": "https://flagcdn.com/w80/no.png"
+  },
+  {
+    "Code": "nd",
+    "Name": "Ndebele, North; North Ndebele",
+    "Flag": "https://flagcdn.com/w80/zw.png"
+  },
+  {
+    "Code": "ne",
+    "Name": "Nepali",
+    "Flag": "https://flagcdn.com/w80/np.png"
+  },
+  {
+    "Code": "ng",
+    "Name": "Ndonga",
+    "Flag": "https://flagcdn.com/w80/na.png"
+  },
+  {
+    "Code": "nl",
+    "Name": "Dutch; Flemish",
+    "Flag": "https://flagcdn.com/w80/nl.png"
+  },
+  {
+    "Code": "nn",
+    "Name": "Norwegian Nynorsk; Nynorsk, Norwegian",
+    "Flag": "https://flagcdn.com/w80/no.png"
+  },
+  {
+    "Code": "no",
+    "Name": "Norwegian",
+    "Flag": "https://flagcdn.com/w80/no.png"
+  },
+  {
+    "Code": "nr",
+    "Name": "Ndebele, South; South Ndebele",
+    "Flag": "https://flagcdn.com/w80/za.png"
+  },
+  {
+    "Code": "nv",
+    "Name": "Navajo; Navaho",
+    "Flag": "https://flagcdn.com/w80/us.png"
+  },
+  {
+    "Code": "ny",
+    "Name": "Chichewa; Chewa; Nyanja",
+    "Flag": "https://flagcdn.com/w80/mw.png"
+  },
+  {
+    "Code": "oc",
+    "Name": "Occitan (post 1500)",
+    "Flag": "https://flagcdn.com/w80/fr.png"
+  },
+  {
+    "Code": "oj",
+    "Name": "Ojibwa",
+    "Flag": "https://flagcdn.com/w80/ca.png"
+  },
+  {
+    "Code": "om",
+    "Name": "Oromo",
+    "Flag": "https://flagcdn.com/w80/et.png"
+  },
+  {
+    "Code": "or",
+    "Name": "Oriya",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "os",
+    "Name": "Ossetian; Ossetic",
+    "Flag": "https://flagcdn.com/w80/ru.png"
+  },
+  {
+    "Code": "pa",
+    "Name": "Panjabi; Punjabi",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "pi",
+    "Name": "Pali",
+    "Flag": ""
+  },
+  {
+    "Code": "pl",
+    "Name": "Polish",
+    "Flag": "https://flagcdn.com/w80/pl.png"
+  },
+  {
+    "Code": "ps",
+    "Name": "Pushto; Pashto",
+    "Flag": "https://flagcdn.com/w80/af.png"
+  },
+  {
+    "Code": "pt",
+    "Name": "Portuguese",
+    "Flag": "https://flagcdn.com/w80/pt.png"
+  },
+  {
+    "Code": "qu",
+    "Name": "Quechua",
+    "Flag": "https://flagcdn.com/w80/pe.png"
+  },
+  {
+    "Code": "rm",
+    "Name": "Romansh",
+    "Flag": "https://flagcdn.com/w80/ch.png"
+  },
+  {
+    "Code": "rn",
+    "Name": "Rundi",
+    "Flag": "https://flagcdn.com/w80/bi.png"
+  },
+  {
+    "Code": "ro",
+    "Name": "Romanian; Moldavian; Moldovan",
+    "Flag": "https://flagcdn.com/w80/ro.png"
+  },
+  {
+    "Code": "ru",
+    "Name": "Russian",
+    "Flag": "https://flagcdn.com/w80/ru.png"
+  },
+  {
+    "Code": "rw",
+    "Name": "Kinyarwanda",
+    "Flag": "https://flagcdn.com/w80/rw.png"
+  },
+  {
+    "Code": "sa",
+    "Name": "Sanskrit",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "sc",
+    "Name": "Sardinian",
+    "Flag": "https://flagcdn.com/w80/it.png"
+  },
+  {
+    "Code": "sd",
+    "Name": "Sindhi",
+    "Flag": "https://flagcdn.com/w80/pk.png"
+  },
+  {
+    "Code": "se",
+    "Name": "Northern Sami",
+    "Flag": "https://flagcdn.com/w80/se.png"
+  },
+  {
+    "Code": "sg",
+    "Name": "Sango",
+    "Flag": "https://flagcdn.com/w80/cf.png"
+  },
+  {
+    "Code": "si",
+    "Name": "Sinhala; Sinhalese",
+    "Flag": "https://flagcdn.com/w80/lk.png"
+  },
+  {
+    "Code": "sk",
+    "Name": "Slovak",
+    "Flag": "https://flagcdn.com/w80/sk.png"
+  },
+  {
+    "Code": "sl",
+    "Name": "Slovenian",
+    "Flag": "https://flagcdn.com/w80/si.png"
+  },
+  {
+    "Code": "sm",
+    "Name": "Samoan",
+    "Flag": "https://flagcdn.com/w80/ws.png"
+  },
+  {
+    "Code": "sn",
+    "Name": "Shona",
+    "Flag": "https://flagcdn.com/w80/zw.png"
+  },
+  {
+    "Code": "so",
+    "Name": "Somali",
+    "Flag": "https://flagcdn.com/w80/so.png"
+  },
+  {
+    "Code": "sq",
+    "Name": "Albanian",
+    "Flag": "https://flagcdn.com/w80/al.png"
+  },
+  {
+    "Code": "sr",
+    "Name": "Serbian",
+    "Flag": "https://flagcdn.com/w80/rs.png"
+  },
+  {
+    "Code": "ss",
+    "Name": "Swati",
+    "Flag": "https://flagcdn.com/w80/sz.png"
+  },
+  {
+    "Code": "st",
+    "Name": "Sotho, Southern",
+    "Flag": "https://flagcdn.com/w80/ls.png"
+  },
+  {
+    "Code": "su",
+    "Name": "Sundanese",
+    "Flag": "https://flagcdn.com/w80/id.png"
+  },
+  {
+    "Code": "sv",
+    "Name": "Swedish",
+    "Flag": "https://flagcdn.com/w80/se.png"
+  },
+  {
+    "Code": "sw",
+    "Name": "Swahili",
+    "Flag": "https://flagcdn.com/w80/ke.png"
+  },
+  {
+    "Code": "ta",
+    "Name": "Tamil",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "te",
+    "Name": "Telugu",
+    "Flag": "https://flagcdn.com/w80/in.png"
+  },
+  {
+    "Code": "tg",
+    "Name": "Tajik",
+    "Flag": "https://flagcdn.com/w80/tj.png"
+  },
+  {
+    "Code": "th",
+    "Name": "Thai",
+    "Flag": "https://flagcdn.com/w80/th.png"
+  },
+  {
+    "Code": "ti",
+    "Name": "Tigrinya",
+    "Flag": "https://flagcdn.com/w80/er.png"
+  },
+  {
+    "Code": "tk",
+    "Name": "Turkmen",
+    "Flag": "https://flagcdn.com/w80/tm.png"
+  },
+  {
+    "Code": "tl",
+    "Name": "Tagalog",
+    "Flag": "https://flagcdn.com/w80/ph.png"
+  },
+  {
+    "Code": "tn",
+    "Name": "Tswana",
+    "Flag": "https://flagcdn.com/w80/bw.png"
+  },
+  {
+    "Code": "to",
+    "Name": "Tonga (Tonga Islands)",
+    "Flag": "https://flagcdn.com/w80/to.png"
+  },
+  {
+    "Code": "tr",
+    "Name": "Turkish",
+    "Flag": "https://flagcdn.com/w80/tr.png"
+  },
+  {
+    "Code": "ts",
+    "Name": "Tsonga",
+    "Flag": "https://flagcdn.com/w80/za.png"
+  },
+  {
+    "Code": "tt",
+    "Name": "Tatar",
+    "Flag": "https://flagcdn.com/w80/ru.png"
+  },
+  {
+    "Code": "tw",
+    "Name": "Twi",
+    "Flag": "https://flagcdn.com/w80/gh.png"
+  },
+  {
+    "Code": "ty",
+    "Name": "Tahitian",
+    "Flag": "https://flagcdn.com/w80/pf.png"
+  },
+  {
+    "Code": "ug",
+    "Name": "Uighur; Uyghur",
+    "Flag": "https://flagcdn.com/w80/cn.png"
+  },
+  {
+    "Code": "uk",
+    "Name": "Ukrainian",
+    "Flag": "https://flagcdn.com/w80/ua.png"
+  },
+  {
+    "Code": "ur",
+    "Name": "Urdu",
+    "Flag": "https://flagcdn.com/w80/pk.png"
+  },
+  {
+    "Code": "uz",
+    "Name": "Uzbek",
+    "Flag": "https://flagcdn.com/w80/uz.png"
+  },
+  {
+    "Code": "ve",
+    "Name": "Venda",
+    "Flag": "https://flagcdn.com/w80/za.png"
+  },
+  {
+    "Code": "vi",
+    "Name": "VietNamese",
+    "Flag": "https://flagcdn.com/w80/vn.png"
+  },
+  {
+    "Code": "vo",
+    "Name": "Volap�k",
+    "Flag": ""
+  },
+  {
+    "Code": "wa",
+    "Name": "Walloon",
+    "Flag": "https://flagcdn.com/w80/be.png"
+  },
+  {
+    "Code": "wo",
+    "Name": "Wolof",
+    "Flag": "https://flagcdn.com/w80/sn.png"
+  },
+  {
+    "Code": "xh",
+    "Name": "Xhosa",
+    "Flag": "https://flagcdn.com/w80/za.png"
+  },
+  {
+    "Code": "yi",
+    "Name": "Yiddish",
+    "Flag": "https://flagcdn.com/w80/il.png"
+  },
+  {
+    "Code": "yo",
+    "Name": "Yoruba",
+    "Flag": "https://flagcdn.com/w80/ng.png"
+  },
+  {
+    "Code": "za",
+    "Name": "Zhuang; Chuang",
+    "Flag": "https://flagcdn.com/w80/cn.png"
+  },
+  {
+    "Code": "zh",
+    "Name": "Chinese",
+    "Flag": "https://flagcdn.com/w80/cn.png"
+  },
+  {
+    "Code": "zu",
+    "Name": "Zulu",
+    "Flag": "https://flagcdn.com/w80/za.png"
+  }
+]

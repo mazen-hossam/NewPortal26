@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  the_boys:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: "portal_db"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Passw0rd"
+    ports:
+      - "9000:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    networks:
+      - my-network
+
+volumes:
+  sqlserverdata:
+
+networks:
+  my-network:
+    driver: bridge
