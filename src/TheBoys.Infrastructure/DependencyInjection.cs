@@ -16,12 +16,22 @@ public static class DependencyInjection
         bool isDevelopment
     )
     {
+        var connectionString = configuration.GetConnectionString(
+            isDevelopment ? "LocalDatabaseConnection" : "ProductionDatabaseConnection"
+        );
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            connectionString = configuration.GetConnectionString("LocalDatabaseConnection");
+        }
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new InvalidOperationException(
+                "Connection string is not configured. Add LocalDatabaseConnection or ProductionDatabaseConnection."
+            );
+        }
+
         services.AddDbContext<ApplicationDbContext>(cfg =>
-            cfg.UseSqlServer(
-                configuration.GetConnectionString(
-                    isDevelopment ? "LocalDatabaseConnection" : "ProductionDatabaseConnection"
-                )
-            )
+            cfg.UseSqlServer(connectionString)
         );
 
         services.Configure<EmailSettings>(configuration.GetSection(nameof(EmailSettings)));
