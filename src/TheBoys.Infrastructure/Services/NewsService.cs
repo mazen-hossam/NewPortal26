@@ -83,6 +83,7 @@ public class NewsService : INewsService
         response.Count = response.Result.Count;
         response.PageIndex = request.PageIndex;
         response.PageSize = request.PageSize;
+        response.Success = true;
         return response;
     }
 
@@ -95,7 +96,6 @@ public class NewsService : INewsService
         {
             request.PageSize = 10;
         }
-
         var response = new PaginationResponse<List<NewsDto>>();
         var query = _context
             .NewsUnivs.AsNoTracking()
@@ -150,6 +150,7 @@ public class NewsService : INewsService
         response.Count = response.Result.Count;
         response.PageIndex = request.PageIndex;
         response.PageSize = request.PageSize;
+        response.Success = true;
         return response;
     }
 
@@ -165,7 +166,6 @@ public class NewsService : INewsService
             response.SendBadRequest("No information for news with your language");
             return response;
         }
-
         response.Result = await _context
             .News.AsNoTracking()
             .Include(x => x.NewsTranslations)
@@ -217,6 +217,7 @@ public class NewsService : INewsService
             language.Name = exactLanguage.Name;
         }
 
+        response.Success = true;
         return response;
     }
 
@@ -237,7 +238,6 @@ public class NewsService : INewsService
             response.SendBadRequest("No information for news with your language");
             return response;
         }
-
         response.Result = await _context
             .NewsUnivs.AsNoTracking()
             .Include(x => x.NewsUnivTranslations)
@@ -293,9 +293,9 @@ public class NewsService : INewsService
             }
         }
 
+        response.Success = true;
         return response;
     }
-
     public async Task<ResponseOf<List<NewsDto>>> SearchByOwnerAbbreviationAsync(
         string abbreviation,
         int languageId,
@@ -377,12 +377,11 @@ public class NewsService : INewsService
         response.Result = newsList
             .Select(news =>
             {
-                var translation = news.NewsTranslations.FirstOrDefault(t => t.LangId == languageId);
-                if (translation == null)
-                {
-                    return null;
-                }
-
+            var translation = news.NewsTranslations.FirstOrDefault(t => t.LangId == languageId);
+            if (translation == null)
+            {
+                return null;
+            }
                 return new NewsDto
                 {
                     Id = news.NewsId,
