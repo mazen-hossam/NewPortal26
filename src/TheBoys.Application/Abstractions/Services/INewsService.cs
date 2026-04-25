@@ -28,9 +28,8 @@ public interface INewsService
         CancellationToken cancellationToken = default
     );
 
-    Task<ResponseOf<List<NewsDto>>> SearchByOwnerAbbreviationAsync(
-        string abbreviation,
-        int languageId,
+    Task<PaginationResponse<List<NewsDto>>> SearchByOwnerAbbreviationAsync(
+        SearchByOwnerAbbreviationRequest request,
         CancellationToken cancellationToken = default
     );
 }

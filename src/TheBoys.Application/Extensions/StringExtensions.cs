@@ -10,12 +10,33 @@ public static class StringExtensions
 
     public static string GetFullPath(Guid ownerId, string imgName)
     {
-        if (ImageHelper.Images.TryGetValue(ownerId.ToString().ToLower(), out var path))
+        if (!imgName.HasValue())
         {
-            return $"{path}{imgName}";
+            return string.Empty;
         }
 
-        return $"https://mu.menofia.edu.eg/uploads/{ownerId}/{imgName}";
+        if (
+            Uri.TryCreate(imgName, UriKind.Absolute, out var absoluteUri)
+            && (absoluteUri.Scheme == Uri.UriSchemeHttp || absoluteUri.Scheme == Uri.UriSchemeHttps)
+        )
+        {
+            return absoluteUri.ToString();
+        }
+
+        var fileName = Path.GetFileName(imgName.Replace('\\', '/'));
+        if (!fileName.HasValue())
+        {
+            return string.Empty;
+        }
+
+        if (
+            ImageHelper.Images.TryGetValue(ownerId.ToString().ToLowerInvariant(), out var path)
+        )
+        {
+            return $"{path}{Uri.EscapeDataString(fileName)}";
+        }
+
+        return $"/uploads/{ownerId.ToString().ToLowerInvariant()}/{Uri.EscapeDataString(fileName)}";
     }
 
     public static string StripHtml(string html)

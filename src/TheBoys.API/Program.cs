@@ -1,5 +1,6 @@
 using System.Reflection;
 using System.Threading.RateLimiting;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 using TheBoys.Application;
 using TheBoys.Application.Abstractions.Services;
@@ -12,6 +13,31 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        builder.Configuration
+            .AddJsonFile("appsettings.Local.json", optional: true, reloadOnChange: true)
+            .AddJsonFile(
+                $"appsettings.{builder.Environment.EnvironmentName}.Local.json",
+                optional: true,
+                reloadOnChange: true
+            );
+
+        var allowedOrigins = GetAllowedOrigins(builder.Configuration);
+        var uploadsOptions =
+            builder.Configuration.GetSection("Uploads").Get<UploadsOptions>()
+            ?? new UploadsOptions();
+        var uploadRoot = ResolveUploadsRoot(
+            builder.Environment.ContentRootPath,
+            uploadsOptions.RootPath
+        );
+
+        if (
+            !Directory.Exists(uploadRoot)
+            && !Path.IsPathRooted(uploadsOptions.RootPath ?? string.Empty)
+        )
+        {
+            Directory.CreateDirectory(uploadRoot);
+        }
+
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddHttpContextAccessor();
@@ -61,16 +87,9 @@ public class Program
                 "the.boys.policy",
                 options =>
                     options
+                        .WithOrigins(allowedOrigins)
                         .AllowAnyHeader()
                         .AllowAnyMethod()
-                        .SetIsOriginAllowed(origin =>
-                            origin.StartsWith("http://localhost:5173")
-                            || origin == "http://193.227.24.31:5000"
-                            || origin == "http://stage.menofia.edu.eg:5000"
-                            || origin == "https://stage.menofia.edu.eg:5000"
-                            || origin == "https://stage.menofia.edu.eg"
-                            || origin == "http://stage.menofia.edu.eg"
-                        )
                         .SetPreflightMaxAge(TimeSpan.FromMinutes(30))
             );
         });
@@ -103,7 +122,25 @@ public class Program
             seedingService.SeedLanguages();
         }
 
+        app.UseMiddleware<GlobalExceptionMiddleware>();
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        if (Directory.Exists(uploadRoot))
+        {
+            app.UseStaticFiles(
+                new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(uploadRoot),
+                    RequestPath = NormalizeRequestPath(uploadsOptions.RequestPath)
+                }
+            );
+        }
+
+        app.UseRouting();
         app.UseCors("the.boys.policy");
+        app.UseAuthorization();
+        app.UseRateLimiter();
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
@@ -113,12 +150,58 @@ public class Program
             c.EnablePersistAuthorization();
         });
 
-        app.UseHttpsRedirection();
-        app.UseStaticFiles();
-        app.UseRouting();
-        app.MapFallbackToFile("index.html");
-        app.UseAuthorization();
         app.MapControllers();
+        app.MapFallbackToFile("index.html");
         app.Run();
+    }
+
+    private static string[] GetAllowedOrigins(IConfiguration configuration)
+    {
+        var configuredOrigins =
+            configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
+        var defaultOrigins = new[]
+        {
+            "http://localhost:5173",
+            "http://193.227.24.31:5000",
+            "http://stage.menofia.edu.eg:5000",
+            "https://stage.menofia.edu.eg:5000",
+            "http://stage.menofia.edu.eg",
+            "https://stage.menofia.edu.eg",
+            "http://mu.menofia.edu.eg",
+            "https://mu.menofia.edu.eg"
+        };
+
+        return configuredOrigins
+            .Concat(defaultOrigins)
+            .Where(origin => !string.IsNullOrWhiteSpace(origin))
+            .Select(origin => origin.Trim().TrimEnd('/'))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+    }
+
+    private static string ResolveUploadsRoot(string contentRootPath, string configuredRootPath)
+    {
+        if (!string.IsNullOrWhiteSpace(configuredRootPath))
+        {
+            return Path.GetFullPath(
+                Path.IsPathRooted(configuredRootPath)
+                    ? configuredRootPath
+                    : Path.Combine(contentRootPath, configuredRootPath)
+            );
+        }
+
+        return Path.GetFullPath(Path.Combine(contentRootPath, "uploads"));
+    }
+
+    private static PathString NormalizeRequestPath(string requestPath)
+    {
+        if (string.IsNullOrWhiteSpace(requestPath))
+        {
+            return new PathString("/uploads");
+        }
+
+        return requestPath.StartsWith('/')
+            ? new PathString(requestPath)
+            : new PathString($"/{requestPath}");
     }
 }
