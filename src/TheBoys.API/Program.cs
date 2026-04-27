@@ -87,7 +87,10 @@ public class Program
                 "the.boys.policy",
                 options =>
                     options
-                        .WithOrigins(allowedOrigins)
+                        .SetIsOriginAllowed(origin =>
+                            IsExplicitlyAllowedOrigin(origin, allowedOrigins)
+                            || IsLocalDevelopmentOrigin(origin)
+                        )
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .SetPreflightMaxAge(TimeSpan.FromMinutes(30))
@@ -165,6 +168,8 @@ public class Program
             "http://193.227.24.31:5000",
             "http://stage.menofia.edu.eg:5000",
             "https://stage.menofia.edu.eg:5000",
+            "http://stage.menofia.edu.eg:5050",
+            "https://stage.menofia.edu.eg:5050",
             "http://stage.menofia.edu.eg",
             "https://stage.menofia.edu.eg",
             "http://mu.menofia.edu.eg",
@@ -177,6 +182,37 @@ public class Program
             .Select(origin => origin.Trim().TrimEnd('/'))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
+    }
+
+    private static bool IsExplicitlyAllowedOrigin(string origin, string[] allowedOrigins)
+    {
+        if (string.IsNullOrWhiteSpace(origin))
+        {
+            return false;
+        }
+
+        var normalizedOrigin = origin.Trim().TrimEnd('/');
+        return allowedOrigins.Contains(normalizedOrigin, StringComparer.OrdinalIgnoreCase);
+    }
+
+    private static bool IsLocalDevelopmentOrigin(string origin)
+    {
+        if (!Uri.TryCreate(origin, UriKind.Absolute, out var uri))
+        {
+            return false;
+        }
+
+        var isHttpScheme =
+            uri.Scheme.Equals(Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase)
+            || uri.Scheme.Equals(Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase);
+
+        if (!isHttpScheme)
+        {
+            return false;
+        }
+
+        return uri.Host.Equals("localhost", StringComparison.OrdinalIgnoreCase)
+            || uri.Host.Equals("127.0.0.1", StringComparison.OrdinalIgnoreCase);
     }
 
     private static string ResolveUploadsRoot(string contentRootPath, string configuredRootPath)
