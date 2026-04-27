@@ -2,7 +2,7 @@ namespace TheBoys.Application.Misc;
 
 public static class ImageHelper
 {
-    public static Dictionary<string, string> Images =
+    public static Dictionary<string, string> images =
         new()
         {
             {
@@ -241,6 +241,10 @@ public static class ImageHelper
                 "4AFAC4C7-CAB4-4112-AED7-034BA2B541C3".ToLower(),
                 "https://mu.menofia.edu.eg/PrtlFiles/Sectors/Wafiden/Portal/Images/"
             },
+            // University News - Add common university OwnerIds here
+            {
+                "UNIVERSITY".ToLower(),
+                "https://mu.menofia.edu.eg/PrtlFiles/University/Portal/Images/"
+            },
         };
 }
-

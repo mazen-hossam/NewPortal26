@@ -8,35 +8,30 @@ public static class StringExtensions
     public static bool HasValue(this string value) =>
         value is not null && !string.IsNullOrWhiteSpace(value) && !string.IsNullOrEmpty(value);
 
-    public static string GetFullPath(Guid ownerId, string imgName)
+    public static string GetFullPath(Guid ownerId, string imgName, string? forcedBasePath = null)
     {
         if (!imgName.HasValue())
         {
             return string.Empty;
         }
 
-        if (
-            Uri.TryCreate(imgName, UriKind.Absolute, out var absoluteUri)
-            && (absoluteUri.Scheme == Uri.UriSchemeHttp || absoluteUri.Scheme == Uri.UriSchemeHttps)
-        )
+        // If imgName already contains full path, use it directly
+        if (imgName.StartsWith("https://"))
         {
-            return absoluteUri.ToString();
+            return imgName;
         }
 
-        var fileName = Path.GetFileName(imgName.Replace('\\', '/'));
-        if (!fileName.HasValue())
+        if (forcedBasePath.HasValue())
         {
-            return string.Empty;
+            return $"{forcedBasePath!.TrimEnd('/')}/{imgName}";
         }
 
-        if (
-            ImageHelper.Images.TryGetValue(ownerId.ToString().ToLowerInvariant(), out var path)
-        )
+        if (ImageHelper.images.TryGetValue(ownerId.ToString().ToLower(), out string path))
         {
-            return $"{path}{Uri.EscapeDataString(fileName)}";
+            return $"{path}{imgName}";
         }
 
-        return $"/uploads/{ownerId.ToString().ToLowerInvariant()}/{Uri.EscapeDataString(fileName)}";
+        return $"https://mu.menofia.edu.eg/PrtlFiles/Sectors/UNIVPRES/Portal/Images/{imgName}";
     }
 
     public static string StripHtml(string html)

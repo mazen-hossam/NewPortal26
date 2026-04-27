@@ -13,6 +13,10 @@ namespace TheBoys.Infrastructure.Services;
 public class NewsService : INewsService
 {
     private const int MaxPageSize = 10;
+    private const string SectorNewsListingImageBasePath =
+        "https://mu.menofia.edu.eg/PrtlFiles/Sectors/UNIVPRES/Portal/Images/";
+    private const string UniversityNewsListingImageBasePath =
+        "https://mu.menofia.edu.eg/PrtlFiles/uni/Portal/Images/";
 
     private static readonly Dictionary<Guid, string[]> OwnerKeywords =
         new()
@@ -95,7 +99,11 @@ public class NewsService : INewsService
                 Id = x.NewsId,
                 Date = x.NewsDate,
                 IsFeatured = x.IsFeatured,
-                NewsImg = StringExtensions.GetFullPath(x.OwnerId, x.NewsImg),
+                NewsImg = StringExtensions.GetFullPath(
+                    x.OwnerId,
+                    x.NewsImg,
+                    SectorNewsListingImageBasePath
+                ),
                 NewsDetails = new NewsTranslationDto
                 {
                     Id = x.Translation.Id,
@@ -104,7 +112,11 @@ public class NewsService : INewsService
                     Abbr = StringExtensions.StripHtml(x.Translation.NewsAbbr),
                     Body = StringExtensions.StripHtml(x.Translation.NewsBody),
                     Source = StringExtensions.StripHtml(x.Translation.NewsSource),
-                    ImgAlt = StringExtensions.GetFullPath(x.OwnerId, x.Translation.ImgAlt)
+                    ImgAlt = StringExtensions.GetFullPath(
+                        x.OwnerId,
+                        x.Translation.ImgAlt,
+                        SectorNewsListingImageBasePath
+                    )
                 }
             })
             .ToListAsync(cancellationToken);
@@ -156,7 +168,11 @@ public class NewsService : INewsService
                 Id = x.NewsId,
                 Date = x.NewsDate,
                 IsFeatured = x.IsFeatured,
-                NewsImg = StringExtensions.GetFullPath(x.OwnerId, x.NewsImg),
+                NewsImg = StringExtensions.GetFullPath(
+                    x.OwnerId,
+                    x.NewsImg,
+                    UniversityNewsListingImageBasePath
+                ),
                 NewsDetails = new NewsTranslationDto
                 {
                     Id = x.Translation.Id,
@@ -165,7 +181,11 @@ public class NewsService : INewsService
                     Abbr = StringExtensions.StripHtml(x.Translation.NewsAbbr),
                     Body = StringExtensions.StripHtml(x.Translation.NewsBody),
                     Source = StringExtensions.StripHtml(x.Translation.NewsSource),
-                    ImgAlt = x.Translation.ImgAlt
+                    ImgAlt = StringExtensions.GetFullPath(
+                        x.OwnerId,
+                        x.Translation.ImgAlt,
+                        UniversityNewsListingImageBasePath
+                    )
                 }
             })
             .ToListAsync(cancellationToken);
@@ -193,7 +213,11 @@ public class NewsService : INewsService
                 Id = news.NewsId,
                 Date = news.NewsDate,
                 IsFeatured = news.IsFeatured,
-                NewsImg = StringExtensions.GetFullPath(news.OwnerId, news.NewsImg),
+                NewsImg = StringExtensions.GetFullPath(
+                    news.OwnerId,
+                    news.NewsImg,
+                    null
+                ),
                 NewsDetails =
                     news.NewsTranslations
                         .Where(t => t.LangId == languageId)
@@ -204,7 +228,11 @@ public class NewsService : INewsService
                             Abbr = StringExtensions.StripHtml(t.NewsAbbr),
                             Body = StringExtensions.StripHtml(t.NewsBody),
                             Source = StringExtensions.StripHtml(t.NewsSource),
-                            ImgAlt = t.ImgAlt,
+                            ImgAlt = StringExtensions.GetFullPath(
+                                news.OwnerId,
+                                t.ImgAlt,
+                                null
+                            ),
                             LanguageId = t.LangId
                         })
                         .FirstOrDefault(),
@@ -258,7 +286,11 @@ public class NewsService : INewsService
                 Id = news.NewsId,
                 Date = news.NewsDate,
                 IsFeatured = news.IsFeatured,
-                NewsImg = StringExtensions.GetFullPath(news.OwnerId, news.NewsImg),
+                NewsImg = StringExtensions.GetFullPath(
+                    news.OwnerId,
+                    news.NewsImg,
+                    UniversityNewsListingImageBasePath
+                ),
                 NewsDetails = news.NewsUnivTranslations
                     .Where(t => t.LangId == languageId)
                     .Select(t => new NewsTranslationDto
@@ -268,7 +300,11 @@ public class NewsService : INewsService
                         Abbr = StringExtensions.StripHtml(t.NewsAbbr),
                         Body = StringExtensions.StripHtml(t.NewsBody),
                         Source = StringExtensions.StripHtml(t.NewsSource),
-                        ImgAlt = t.ImgAlt,
+                        ImgAlt = StringExtensions.GetFullPath(
+                            news.OwnerId,
+                            t.ImgAlt,
+                            UniversityNewsListingImageBasePath
+                        ),
                         LanguageId = t.LangId
                     })
                     .FirstOrDefault(),
@@ -390,7 +426,11 @@ public class NewsService : INewsService
                 Id = news.NewsId,
                 Date = news.NewsDate,
                 IsFeatured = news.IsFeatured,
-                NewsImg = StringExtensions.GetFullPath(news.OwnerId, news.NewsImg),
+                NewsImg = StringExtensions.GetFullPath(
+                    news.OwnerId,
+                    news.NewsImg,
+                    null
+                ),
                 NewsDetails = new NewsTranslationDto
                 {
                     Id = news.Translation.Id,
@@ -398,7 +438,11 @@ public class NewsService : INewsService
                     Abbr = StringExtensions.StripHtml(news.Translation.NewsAbbr),
                     Body = StringExtensions.StripHtml(news.Translation.NewsBody),
                     Source = StringExtensions.StripHtml(news.Translation.NewsSource),
-                    ImgAlt = news.Translation.ImgAlt,
+                    ImgAlt = StringExtensions.GetFullPath(
+                        news.OwnerId,
+                        news.Translation.ImgAlt,
+                        null
+                    ),
                     LanguageId = news.Translation.LangId
                 },
                 Languages = news.Languages
@@ -430,5 +474,3 @@ public class NewsService : INewsService
         }
     }
 }
-
-

@@ -35,8 +35,15 @@ public static class DependencyInjection
         );
 
         services.Configure<EmailSettings>(configuration.GetSection(nameof(EmailSettings)));
+        services.Configure<FileUrlOptions>(configuration.GetSection(FileUrlOptions.SectionName));
+        services.PostConfigure<FileUrlOptions>(options =>
+        {
+            options.UploadsRequestPath =
+                configuration["Uploads:RequestPath"] ?? options.UploadsRequestPath;
+        });
         services.AddSingleton(sp => sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<EmailSettings>>().Value);
 
+        services.AddScoped<IFileUrlService, FileUrlService>();
         services.AddScoped<INewsService, NewsService>();
         services.AddScoped<ILanguageService, LanguageService>();
         services.AddScoped<IMailService, MailService>();

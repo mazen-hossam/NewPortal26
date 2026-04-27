@@ -18,7 +18,6 @@ public class NewsController : ControllerBase
         _newsService = newsService;
     }
 
-    [HttpGet]
     [HttpGet("SectorsNews")]
     public async Task<ActionResult<PaginationResponse<List<NewsDto>>>> PaginateAllNewsAsync(
         [FromQuery] PaginateNewsRequest request,
@@ -40,7 +39,7 @@ public class NewsController : ControllerBase
     }
 
     [HttpGet("newSec/{id:int}/{lid:int}")]
-    [HttpGet("/api/v1/News/{id:int}/{lid:int}")]
+    // [HttpGet("/api/v1/News/{id:int}/{lid:int}")]
     public async Task<ActionResult<ResponseOf<NewsDto>>> GetNewSecAsync(
         [Required][FromRoute] int id,
         [Required][FromRoute] int lid,
