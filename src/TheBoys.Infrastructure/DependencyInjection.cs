@@ -45,6 +45,7 @@ public static class DependencyInjection
 
         services.AddScoped<IFileUrlService, FileUrlService>();
         services.AddScoped<INewsService, NewsService>();
+        services.AddScoped<INewsStatisticsService, NewsStatisticsService>();
         services.AddScoped<ILanguageService, LanguageService>();
         services.AddScoped<IMailService, MailService>();
         services.AddScoped<ISeedingService, SeedingService>();
