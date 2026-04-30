@@ -10,6 +10,9 @@ public class ApplicationDbContext : DbContext
     public DbSet<NewsUnivTranslation> NewsUnivsTranslations { get; set; }
     public DbSet<NewsTranslation> NewsTranslations { get; set; }
     public DbSet<Language> Languages { get; set; }
+    public DbSet<PrtlMenuUniv> PrtlMenuUnivs { get; set; }
+    public DbSet<PrtlMenuUnivTranslation> PrtlMenuUnivTranslations { get; set; }
+    public DbSet<PrtlArticle> PrtlArticles { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options) { }
