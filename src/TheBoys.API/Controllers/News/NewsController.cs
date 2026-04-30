@@ -11,8 +11,8 @@ namespace TheBoys.API.Controllers.News;
 [ApiController]
 public class NewsController : ControllerBase
 {
-    private readonly INewsService _newsService;
 
+    private readonly INewsService _newsService;
     public NewsController(INewsService newsService)
     {
         _newsService = newsService;
