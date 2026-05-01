@@ -10,5 +10,7 @@ namespace TheBoys.Application.Abstractions.Services
     public interface IUniversityMenuService
     {
         Task<List<MenuDto>> GetFullMenuAsync(int langId, CancellationToken cancellationToken = default);
+
+        Task<List<MenuDto>> GetCollegesMenuAsync(int langId, CancellationToken cancellationToken = default);
     }
 }
