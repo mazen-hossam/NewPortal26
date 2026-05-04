@@ -49,6 +49,7 @@ public static class DependencyInjection
         services.AddScoped<ILanguageService, LanguageService>();
         services.AddScoped<IMailService, MailService>();
         services.AddScoped<IUniversityMenuService, UniversityMenuService>();
+        services.AddScoped<IFacultyNewsService, FacultyNewsService>();
         services.AddScoped<ISeedingService, SeedingService>();
 
         return services;

@@ -15,23 +15,28 @@ public static class StringExtensions
             return string.Empty;
         }
 
+        imgName = imgName.Trim();
+
         // If imgName already contains full path, use it directly
-        if (imgName.StartsWith("https://"))
+        if (
+            imgName.StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+            || imgName.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+        )
         {
             return imgName;
         }
 
         if (forcedBasePath.HasValue())
         {
-            return $"{forcedBasePath!.TrimEnd('/')}/{imgName}";
+            return $"{forcedBasePath!.TrimEnd('/')}/{imgName.TrimStart('/')}";
         }
 
         if (ImageHelper.images.TryGetValue(ownerId.ToString().ToLower(), out string path))
         {
-            return $"{path}{imgName}";
+            return $"{path.TrimEnd('/')}/{imgName.TrimStart('/')}";
         }
 
-        return $"https://mu.menofia.edu.eg/PrtlFiles/Sectors/UNIVPRES/Portal/Images/{imgName}";
+        return $"https://mu.menofia.edu.eg/PrtlFiles/Sectors/UNIVPRES/Portal/Images/{imgName.TrimStart('/')}";
     }
 
     public static string StripHtml(string html)
