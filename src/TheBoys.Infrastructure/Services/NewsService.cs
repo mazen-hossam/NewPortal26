@@ -198,100 +198,23 @@ public class NewsService : INewsService
     }
 
     public async Task<ResponseOf<NewsDto>> GetSectorNewsByIdAsync(
-        int id,
-        int languageId,
-        CancellationToken cancellationToken = default
-    )
+    int id,
+    int languageId,
+    CancellationToken cancellationToken = default
+)
     {
         var response = new ResponseOf<NewsDto>();
 
-        response.Result = await _context
-            .News.AsNoTracking()
+        var newsData = await _context.News.AsNoTracking()
             .Where(x => x.NewsId == id)
-            .Select(news => new NewsDto
+            .Select(news => new
             {
-                Id = news.NewsId,
-                Date = news.NewsDate,
-                IsFeatured = news.IsFeatured,
-                NewsImg = StringExtensions.GetFullPath(
-                    news.OwnerId,
-                    news.NewsImg,
-                    null
-                ),
-                NewsDetails =
-                    news.NewsTranslations
-                        .Where(t => t.LangId == languageId)
-                        .Select(t => new NewsTranslationDto
-                        {
-                            Id = t.Id,
-                            Head = StringExtensions.StripHtml(t.NewsHead),
-                            Abbr = StringExtensions.StripHtml(t.NewsAbbr),
-                            Body = StringExtensions.StripHtml(t.NewsBody),
-                            Source = StringExtensions.StripHtml(t.NewsSource),
-                            ImgAlt = StringExtensions.GetFullPath(
-                                news.OwnerId,
-                                t.ImgAlt,
-                                null
-                            ),
-                            LanguageId = t.LangId
-                        })
-                        .FirstOrDefault(),
-                Languages = news
-                    .NewsTranslations.Select(x => new LanguageModel
-                    {
-                        Id = x.Language.Id,
-                        Code = x.Language.LCID
-                    })
-                    .ToList()
-            })
-            .FirstOrDefaultAsync(cancellationToken);
-
-        if (response.Result?.NewsDetails == null)
-        {
-            response.SendBadRequest("No information for news with your language");
-            return response;
-        }
-
-        foreach (var language in response.Result.Languages)
-        {
-            var exactLanguage = StaticLanguages.LanguageModels.FirstOrDefault(x =>
-                x.Code.Trim().ToLower() == language.Code.Trim().ToLower()
-            );
-
-            if (exactLanguage is null)
-            {
-                continue;
-            }
-
-            language.Flag = exactLanguage.Flag;
-            language.Name = exactLanguage.Name;
-        }
-
-        response.Success = true;
-        return response;
-    }
-
-    public async Task<ResponseOf<NewsDto>> GetUniversityNewsByIdAsync(
-        int id,
-        int languageId,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var response = new ResponseOf<NewsDto>();
-        response.Result = await _context
-            .NewsUnivs.AsNoTracking()
-            .Where(x => x.NewsId == id)
-            .Select(news => new NewsDto
-            {
-                Id = news.NewsId,
-                Date = news.NewsDate,
-                IsFeatured = news.IsFeatured,
-                NewsImg = StringExtensions.GetFullPath(
-                    news.OwnerId,
-                    news.NewsImg,
-                    UniversityNewsListingImageBasePath
-                ),
-                NewsDetails = news.NewsUnivTranslations
+                news.NewsId,
+                news.NewsDate,
+                news.IsFeatured,
+                news.NewsImg,
+                news.OwnerId,
+                Detail = news.NewsTranslations
                     .Where(t => t.LangId == languageId)
                     .Select(t => new NewsTranslationDto
                     {
@@ -300,30 +223,38 @@ public class NewsService : INewsService
                         Abbr = StringExtensions.StripHtml(t.NewsAbbr),
                         Body = StringExtensions.StripHtml(t.NewsBody),
                         Source = StringExtensions.StripHtml(t.NewsSource),
-                        ImgAlt = StringExtensions.GetFullPath(
-                            news.OwnerId,
-                            t.ImgAlt,
-                            UniversityNewsListingImageBasePath
-                        ),
+                        ImgAlt = t.ImgAlt, 
                         LanguageId = t.LangId
                     })
                     .FirstOrDefault(),
-                Languages = news
-                    .NewsUnivTranslations.Select(t => new LanguageModel
-                    {
-                        Id = t.Language.Id,
-                        Code = t.Language.LCID
-                    })
+                AvailableLanguages = news.NewsTranslations
+                    .Select(t => new { t.Language.Id, t.Language.LCID })
                     .Distinct()
                     .ToList()
             })
             .FirstOrDefaultAsync(cancellationToken);
 
-        if (response.Result?.NewsDetails == null)
+        if (newsData == null || newsData.Detail == null)
         {
             response.SendBadRequest("No information for news with your language");
             return response;
         }
+
+        response.Result = new NewsDto
+        {
+            Id = newsData.NewsId,
+            Date = newsData.NewsDate,
+            IsFeatured = newsData.IsFeatured,
+            NewsImg = StringExtensions.GetFullPath(newsData.OwnerId, newsData.NewsImg, null),
+            NewsDetails = newsData.Detail,
+            Languages = newsData.AvailableLanguages.Select(l => new LanguageModel
+            {
+                Id = l.Id,
+                Code = l.LCID
+            }).ToList()
+        };
+
+        response.Result.NewsDetails.ImgAlt = StringExtensions.GetFullPath(newsData.OwnerId, newsData.Detail.ImgAlt, null);
 
         if (response.Result.Languages != null)
         {
@@ -332,13 +263,93 @@ public class NewsService : INewsService
                 var exactLanguage = StaticLanguages.LanguageModels.FirstOrDefault(x =>
                     x.Code.Trim().ToLower() == language.Code.Trim().ToLower()
                 );
-                if (exactLanguage == null)
-                {
-                    continue;
-                }
 
-                language.Flag = exactLanguage.Flag;
-                language.Name = exactLanguage.Name;
+                if (exactLanguage != null)
+                {
+                    language.Flag = exactLanguage.Flag;
+                    language.Name = exactLanguage.Name;
+                }
+            }
+        }
+
+        response.Success = true;
+        return response;
+    }
+
+    public async Task<ResponseOf<NewsDto>> GetUniversityNewsByIdAsync(
+     int id,
+     int languageId,
+     CancellationToken cancellationToken = default
+ )
+    {
+        var response = new ResponseOf<NewsDto>();
+
+        var newsData = await _context.NewsUnivs
+            .AsNoTracking()
+            .Where(x => x.NewsId == id)
+            .Select(news => new
+            {
+                news.NewsId,
+                news.NewsDate,
+                news.IsFeatured,
+                news.NewsImg,
+                news.OwnerId,
+                Detail = news.NewsUnivTranslations
+                    .Where(t => t.LangId == languageId)
+                    .Select(t => new NewsTranslationDto
+                    {
+                        Id = t.Id,
+                        Head = StringExtensions.StripHtml(t.NewsHead),
+                        Abbr = StringExtensions.StripHtml(t.NewsAbbr),
+                        Body = StringExtensions.StripHtml(t.NewsBody),
+                        Source = StringExtensions.StripHtml(t.NewsSource),
+                        ImgAlt = t.ImgAlt,
+                        LanguageId = t.LangId
+                    })
+                    .FirstOrDefault(),
+                
+                AvailableLanguages = news.NewsUnivTranslations
+                    .Select(t => new { t.Language.Id, t.Language.LCID })
+                    .Distinct()
+                    .ToList()
+            })
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (newsData == null || newsData.Detail == null)
+        {
+            response.SendBadRequest("No information for news with your language");
+            return response;
+        }
+
+        response.Result = new NewsDto
+        {
+            Id = newsData.NewsId,
+            Date = newsData.NewsDate,
+            IsFeatured = newsData.IsFeatured,
+            NewsImg = StringExtensions.GetFullPath(newsData.OwnerId, newsData.NewsImg, UniversityNewsListingImageBasePath),
+            NewsDetails = newsData.Detail,
+            Languages = newsData.AvailableLanguages.Select(l => new LanguageModel
+            {
+                Id = l.Id,
+                Code = l.LCID
+            }).ToList()
+        };
+
+        response.Result.NewsDetails.ImgAlt = StringExtensions.GetFullPath(newsData.OwnerId, newsData.Detail.ImgAlt, UniversityNewsListingImageBasePath);
+
+        if (response.Result.Languages != null)
+        {
+            foreach (var language in response.Result.Languages)
+            {
+                var exactLanguage = StaticLanguages.LanguageModels.FirstOrDefault(x =>
+                    x.Code.Trim().ToLower() == language.Code.Trim().ToLower()
+                );
+
+                if (exactLanguage != null)
+                {
+                    language.Flag = exactLanguage.Flag;
+                    language.Name = exactLanguage.Name;
+                }
             }
         }
 

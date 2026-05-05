@@ -1,14 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
 using System.Data.Common;
 using System.Globalization;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using TheBoys.Application.Abstractions.Services;
 using TheBoys.Application.Common.Requests;
 using TheBoys.Application.Common.Responses;
 using TheBoys.Application.Dtos;
 using TheBoys.Application.Extensions;
 using TheBoys.Application.FacultyNews;
+using TheBoys.Application.Misc;
+using TheBoys.Domain.Entities;
 using TheBoys.Infrastructure.Persistence;
 
 namespace TheBoys.Infrastructure.Services;
@@ -245,22 +247,26 @@ public sealed class FacultyNewsService : IFacultyNewsService
         var translationTable = GetQualifiedTableName(config.TranslationTable);
 
         return $"""
-            SELECT
-                n.[News_Id] AS [Id],
-                n.[News_date] AS [Date],
-                n.[currentNews_date] AS [CurrentDate],
-                n.[News_img] AS [Image],
-                t.[News_Head] AS [Title],
-                t.[News_Source] AS [Source],
-                t.[Img_alt] AS [ImageAlt],
-                t.[News_Body] AS [Body]
-            FROM {newsTable} AS n
-            INNER JOIN {translationTable} AS t
-                ON n.[News_Id] = t.[News_Id]
-            WHERE n.[Published] = 1
-                AND n.[News_Id] = @Id
-                AND t.[Lang_Id] = @LangId;
-            """;
+        SELECT
+            n.[News_Id] AS [Id],
+            n.[News_date] AS [Date],
+            n.[currentNews_date] AS [CurrentDate],
+            n.[News_img] AS [Image],
+            t.[News_Head] AS [Title],
+            t.[News_Source] AS [Source],
+            t.[Img_alt] AS [ImageAlt],
+            t.[News_Body] AS [Body],
+            -- ????? ?? ?? ???? ????? ??? ???? ????? ?????? ?????? (?????: "1,2")
+            (SELECT STRING_AGG(CAST(tr.[Lang_Id] AS VARCHAR), ',') 
+             FROM {translationTable} AS tr 
+             WHERE tr.[News_Id] = n.[News_Id]) AS [AvailableLanguages]
+        FROM {newsTable} AS n
+        INNER JOIN {translationTable} AS t
+            ON n.[News_Id] = t.[News_Id]
+        WHERE n.[Published] = 1
+            AND n.[News_Id] = @Id
+            AND t.[Lang_Id] = @LangId;
+        """;
     }
 
     private static string GetQualifiedTableName(string tableName)
@@ -311,7 +317,7 @@ public sealed class FacultyNewsService : IFacultyNewsService
 
     private static FacultyNewsDetailsDto ReadDetails(DbDataReader reader, FacultyNewsConfig config)
     {
-        return new FacultyNewsDetailsDto
+        var details = new FacultyNewsDetailsDto
         {
             Id = GetInt32(reader, "Id"),
             Title = StringExtensions.StripHtml(GetString(reader, "Title")),
@@ -320,8 +326,34 @@ public sealed class FacultyNewsService : IFacultyNewsService
             Image = GetFacultyImagePath(config, GetString(reader, "Image")),
             Source = StringExtensions.StripHtml(GetString(reader, "Source")),
             ImageAlt = GetFacultyImagePath(config, GetString(reader, "ImageAlt")),
-            Body = StringExtensions.StripHtml(GetString(reader, "Body"))
+            Body = StringExtensions.StripHtml(GetString(reader, "Body")),
+            Languages = new List<LanguageModel>() // ????? ???????
         };
+
+        // ????? ?????? ???? ???? ?? ??? SQL (?? "1,2")
+        var langIdsString = GetString(reader, "AvailableLanguages");
+
+        if (!string.IsNullOrEmpty(langIdsString))
+        {
+            // ????? ???? ?????? (1 ? 2)
+            var langIds = langIdsString.Split(',').Select(int.Parse).Distinct();
+
+            foreach (var langId in langIds)
+            {
+                // ????? ???? ?? ????? ??????? ??????? ???? ???? ?? ???????
+                var staticLang = StaticLanguages.LanguageModels.FirstOrDefault(x => x.Id == langId);
+
+                details.Languages.Add(new LanguageModel
+                {
+                    Id = langId,
+                    Code = staticLang?.Code ?? (langId == 1 ? "ar-EG" : "en-US"),
+                    Name = staticLang?.Name ?? (langId == 1 ? "Arabic" : "English"),
+                    Flag = staticLang?.Flag // ??? ????? ?????!
+                });
+            }
+        }
+
+        return details;
     }
 
     private static string GetFacultyImagePath(FacultyNewsConfig config, string imageName)
